@@ -1,8 +1,7 @@
 import express from "express";
 import cors from "cors";
-import router from "./routes";
 import morgan from "morgan";
-
+import userRouter from "./routes";
 const app = express();
 app.use(cors());
 app.use(morgan("dev"));
@@ -13,7 +12,7 @@ app.get("/", (req, res) => {
   res.json({ ip: req.ip, message, url: req.url });
 });
 
-app.use("/api", router);
+app.use("/api/user", userRouter);
 
 const server = app.listen(3000, () =>
   console.log(`
